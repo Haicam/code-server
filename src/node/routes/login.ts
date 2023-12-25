@@ -30,7 +30,7 @@ const getRoot = async (req: Request, error?: Error): Promise<string> => {
   const content = await fs.readFile(path.join(rootPath, "src/browser/pages/login.html"), "utf8")
   const locale = req.args["locale"] || "en"
   i18n.changeLanguage(locale)
-  const appName = req.args["app-name"] || "code-server"
+  const appName =  "JuniorIT.AI" //req.args["app-name"] || "code-server"
   const welcomeText = req.args["welcome-text"] || (i18n.t("WELCOME", { app: appName }) as string)
   let passwordMsg = i18n.t("LOGIN_PASSWORD", { configFile: req.args.config })
   if (req.args.usingEnvPassword) {
@@ -38,6 +38,8 @@ const getRoot = async (req: Request, error?: Error): Promise<string> => {
   } else if (req.args.usingEnvHashedPassword) {
     passwordMsg = i18n.t("LOGIN_USING_HASHED_PASSWORD")
   }
+
+  // get one time token here
 
   return replaceTemplates(
     req,

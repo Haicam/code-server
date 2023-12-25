@@ -43,7 +43,7 @@ export class CodeServerRouteWrapper {
   //#region Route Handlers
 
   private manifest: express.Handler = async (req, res, next) => {
-    const appName = req.args["app-name"] || "code-server"
+    const appName = "JuniorIT.AI" //req.args["app-name"] || "code-server"
     res.writeHead(200, { "Content-Type": "application/manifest+json" })
 
     return res.end(
