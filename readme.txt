@@ -6,12 +6,20 @@ sudo apt-get install build-essential g++ libx11-dev libxkbfile-dev libsecret-1-d
 echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
 sudo apt update
 sudo apt install nfpm
+sudo apt-get install jq
+sudo apt-get install rsync
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 nvm install lts/hydrogen
 npm install --global yarn
 
-nvm use v18.19.0
+#nvm use v18.19.0
 
+git submodule update --init
 yarn
 yarn build
 VERSION='0.0.2' yarn build:vscode
